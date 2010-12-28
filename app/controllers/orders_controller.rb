@@ -1,5 +1,8 @@
 class OrdersController < ApplicationController
-  # GET /orders
+
+ skip_before_filter :authorize, :only => [:new, :create]
+ 
+ # GET /orders
   # GET /orders.xml
   def index
       @orders = Order.all
@@ -25,7 +28,7 @@ class OrdersController < ApplicationController
   # GET /orders/new.xml
   def new
     if current_cart.line_items.empty?
-    redirect_to store_url, :notice => "Your cart is empty"
+    redirect_to store_index_url, :notice => "Your cart is empty"
     return
   end
 
