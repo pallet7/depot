@@ -20,7 +20,7 @@ def remove_product(product_id)
    else
   
       #current_item = LineItem.destroy(:product_id => product_id)
-      # current_item.destroy
+       current_item.quantity = 0
        
        #line_items << current_item
    end

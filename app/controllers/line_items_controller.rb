@@ -86,13 +86,16 @@ skip_before_filter :authorize, :only => [:create , :destroy]
     product = Product.find(params[:id])
     @line_item = @cart.remove_product(product.id)
     if @line_item.quantity > 0
-    @line_item.save
+  
+ @line_item.save
     redirect_to store_index_path
+ 
 
   else
-
-  @line_item.destroy
- redirect_to store_index_path
+ 
+ @line_item.destroy
+  redirect_to store_index_path
+  
   end
    
   end
