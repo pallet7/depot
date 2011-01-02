@@ -46,10 +46,7 @@ skip_before_filter :authorize, :only => :create
 
   @cart = current_cart
   product = Product.find(params[:product_id])
-  @line_item = @cart.add_product(product.id)
-
-
-                        
+  @line_item = @cart.add_product(product.id)                     
 
     respond_to do |format|
       if @line_item.save
@@ -83,12 +80,16 @@ skip_before_filter :authorize, :only => :create
   # DELETE /line_items/1
   # DELETE /line_items/1.xml
   def destroy
-    @line_item = LineItem.find(params[:id])
-    @line_item.destroy
 
-    respond_to do |format|
-      format.html { redirect_to(line_items_url) }
-      format.xml  { head :ok }
-    end
+
+ 
+
+ @cart = current_cart
+  product = Product.find(params[:product_id])
+                     
+@line_item.destroy
+   
+
+   
   end
 end
