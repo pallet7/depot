@@ -1,6 +1,6 @@
 class LineItemsController < ApplicationController
  
-skip_before_filter :authorize, :only => :create
+skip_before_filter :authorize, :only => [:create , :destroy]
 
 # GET /line_items
   # GET /line_items.xml
@@ -82,14 +82,18 @@ skip_before_filter :authorize, :only => :create
   def destroy
 
 
- 
+  @cart = current_cart
+    product = Product.find(params[:id])
+    @line_item = @cart.remove_product(product.id)
+    if @line_item.quantity > 0
+    @line_item.save
+    redirect_to store_index_path
 
- @cart = current_cart
-  product = Product.find(params[:product_id])
-                     
-@line_item.destroy
-   
+  else
 
+  @line_item.destroy
+ redirect_to store_index_path
+  end
    
   end
 end

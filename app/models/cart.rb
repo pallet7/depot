@@ -18,8 +18,11 @@ def remove_product(product_id)
    if current_item and current_item.quantity > 1
       current_item.quantity -= 1
    else
-      current_item = LineItem.destroy(:product_id => product_id)
-      line_items << current_item
+  
+      #current_item = LineItem.destroy(:product_id => product_id)
+      # current_item.destroy
+       
+       #line_items << current_item
    end
       current_item
  end
